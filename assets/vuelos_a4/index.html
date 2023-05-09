@@ -11,8 +11,6 @@
 
         <!-- Make sure you put this AFTER Leaflet's CSS -->
         <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
-        <link rel="stylesheet" href="L.Control.Locate.min.css" />
-        <script src="L.Control.Locate.js"></script>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
@@ -98,40 +96,6 @@
 
     // Ajusta el mapa para que se ajuste al grupo de marcadores
      map.fitBounds(group.getBounds());
-
-
-
-    // Añadir un botón para geolocalización
-    L.control.locate({
-        position: 'topleft',
-        drawCircle: true,
-        follow: false,
-        setView: true,
-        keepCurrentZoomLevel: true,
-        markerStyle: {
-            weight: 1,
-            opacity: 0.8,
-            fillOpacity: 0.8
-        },
-        circleStyle: {
-            weight: 1,
-            clickable: false
-        },
-        icon: 'fa fa-location-arrow',
-        metric: true,
-        strings: {
-            title: "Mi ubicación",
-            popup: "Estás dentro de {distance} {unit} desde este punto",
-            outsideMapBoundsMsg: "Parece que estás fuera de los límites del mapa"
-        },
-        locateOptions: {
-            maxZoom: 16,
-            watch: true,
-            enableHighAccuracy: true,
-            maximumAge: 10000,
-            timeout: 10000
-        }
-    }).addTo(map);
 
 
     </script>

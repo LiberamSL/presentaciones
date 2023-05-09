@@ -502,7 +502,7 @@ Datos disponibles -> http://gofile.me/70z3P/Dwj0e27Hl
 ---
 # Vuelos para redacción de proyecto A4
 
-<iframe src="assets/vuelos_a4/index.html" style="height:100%; width: 100%;"></iframe>
+<iframe src="https://liberamsl.github.io/presentaciones/assets/vuelos_a4/index.html" style="height:100%; width: 100%;"></iframe>
 
 ---
 
