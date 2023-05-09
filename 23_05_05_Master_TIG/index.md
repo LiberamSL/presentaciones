@@ -256,13 +256,12 @@ Mayor resolución del sensor: representación más detallada en la imagen
 ![center](../assets/img_presentacion/precio_gps_2.png)
 
 ---
-
-[![bg fit](../assets/img_presentacion/masqi.png)](https://liberam.es/dev/pcviewer/masqi.html)
 https://liberam.es/dev/pcviewer/masqi.html
+![bg right:60%](../assets/img_presentacion/masqi.png)
 
 ---
 
-## **Topografía con drones (sin RTK)**
+## **Topografía con drones**
 **Opción 1**
 Uso de bases que transmiten datos vía Internet-Móvil. Por ejemplo la **[Red geodésica de Aragón](http://gnss.aragon.es/)**
 ![bg right:55% 105%](../assets/img_presentacion/gpsrtk_gnssBase.png)
