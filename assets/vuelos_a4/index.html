@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+       <title>Seleccion de provincia</title>
+       <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
+
+        <!-- Make sure you put this AFTER Leaflet's CSS -->
+        <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+        <link rel="stylesheet" href="L.Control.Locate.min.css" />
+        <script src="L.Control.Locate.js"></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+       <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        .popup-content img {
+            max-width: 100%;
+        }
+        </style>
+    </head>
+
+
+
+<body>
+	<div id="map"></div>
+
+    <script>
+    var map = L.map('map').setView([51.505, -0.09], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+            '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+            'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1
+    }).addTo(map);
+
+
+    var images = [
+        {lat: 38.60897671, lng: -3.46598095, imageUrl: 'JPEG/01_Mudela1.jpg', name: 'Mudela', x: 459428.647, y: 4273488.715, z: 773.837},
+        {lat: 38.609, lng: -3.46598094, imageUrl: 'JPEG/01_Mudela2.jpg', name: 'Mudela', x: 459428.647, y: 4273488.715, z: 773.837},
+        {lat: 38.48359815, lng: -3.50089775, imageUrl: 'JPEG/02_almuradiel.jpg', name: 'Almuradiel', x: 456312.752, y: 4259592.291, z: 762.395},
+        {lat: 38.02012794, lng: -4.13064110, imageUrl: 'JPEG/04_marmolejo.jpg', name: 'Marmolejo', x: 400758.300, y: 4208651.424, z: 210.001},
+        {lat: 37.54242275, lng: -4.65166080, imageUrl: 'JPEG/10_montilla_1.jpg', name: 'Montilla', x: 354086.959, y: 4156329.581, z: 278.395},
+        {lat: 37.54042275, lng: -4.65166081, imageUrl: 'JPEG/10_montilla_2.jpg', name: 'Montilla', x: 354086.959, y: 4156329.581, z: 278.395},
+        {lat: 38.00490012, lng: -4.20252477, imageUrl: 'JPEG/05_sanjulian.jpg', name: 'San Julian', x: 394426.671, y: 4207040.913, z: 183.580},
+        {lat: 38.01088984, lng: -3.97446167, imageUrl: 'JPEG/03_villanueva.jpg', name: 'Villanueva de la Reina', x: 414456.515, y: 4207471.264, z: 221.764},
+        {lat: 37.47595189, lng: -4.69052746, imageUrl: 'JPEG/11_aguilar2.jpg', name: 'Aguilar de la Frontera', x: 350520.558, y:4149015.324, z: 323.866},
+        {lat: 37.474, lng: -4.69052795, imageUrl: 'JPEG/11_aguilar1.jpg', name: 'Aguilar de la Frontera', x: 350520.558, y:4149015.324, z: 323.866},
+        {lat: 37.94584334, lng: -4.54442541, imageUrl: 'JPEG/06_villafranca.jpg', name: 'Villafranca', x: 364299.871, y: 4200931.040, z: 141.372},
+        {lat: 37.9126671, lng: -4.7171717, imageUrl: 'JPEG/07_rabanales.jpg', name: 'Rabanales', x: 364299.871, y: 4200931.040, z: 141.372},
+        {lat: 37.9444513, lng: -4.4981611, imageUrl: 'JPEG/08_carpio.jpg', name: 'El Carpio', x: 364299.871, y: 4200931.040, z: 141.372},
+        {lat: 37.978509, lng: -4.291411, imageUrl: 'JPEG/09_villa.jpg', name: 'Villa del rio', x: 364299.871, y: 4200931.040, z: 141.372},
+        ];
+
+
+    // Crea un arreglo para almacenar los objetos L.marker
+    var markers = [];
+
+    // Crea un objeto L.marker y un popup para cada imagen
+    for (var i = 0; i < images.length; i++) {
+    var image = images[i];
+    var marker = L.marker([image.lat, image.lng]).addTo(map);
+    //var content = '<img src="' + image.imageUrl + '" alt="imagen" style="max-width:200px;height:auto;">';
+    var content = '<a href="' +
+     image.imageUrl +
+        '" target="_blank"><img src="' +
+        image.imageUrl + '" alt="imagen" style="max-width:200px;height:auto;"></a>'+
+        '<br/><h1>' + image.name + '</h1>' + '<h3>Base: </h3>' +
+        '<p><strong>X: </strong>' + image.x + '</p>' + '<p><strong>Y: </strong>' + image.y + '</p>' + '<p><strong>Z: </strong>' + image.z + '</p>'      
+        ;
+
+    var popup = L.popup().setContent(content);
+    
+    // Agrega el evento click al popup para abrir la imagen en una ventana nueva
+    popup.on('click', function(e) {
+        window.open(imageUrl, '_blank');
+    });
+    
+    marker.bindPopup(popup);
+    markers.push(marker);
+    }
+
+    // Crea un grupo de marcadores y agrégalo al mapa
+    var group = L.featureGroup(markers).addTo(map);
+
+    // Ajusta el mapa para que se ajuste al grupo de marcadores
+     map.fitBounds(group.getBounds());
+
+
+
+    // Añadir un botón para geolocalización
+    L.control.locate({
+        position: 'topleft',
+        drawCircle: true,
+        follow: false,
+        setView: true,
+        keepCurrentZoomLevel: true,
+        markerStyle: {
+            weight: 1,
+            opacity: 0.8,
+            fillOpacity: 0.8
+        },
+        circleStyle: {
+            weight: 1,
+            clickable: false
+        },
+        icon: 'fa fa-location-arrow',
+        metric: true,
+        strings: {
+            title: "Mi ubicación",
+            popup: "Estás dentro de {distance} {unit} desde este punto",
+            outsideMapBoundsMsg: "Parece que estás fuera de los límites del mapa"
+        },
+        locateOptions: {
+            maxZoom: 16,
+            watch: true,
+            enableHighAccuracy: true,
+            maximumAge: 10000,
+            timeout: 10000
+        }
+    }).addTo(map);
+
+
+    </script>
+
+</body>
+</html>
